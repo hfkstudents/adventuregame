@@ -341,7 +341,7 @@ function followercheck1() {
     var firstAdj = "";
     var secondAdj = "";
     $("#secondMessage").show();
-    // $("#messenger").css({height:170px});
+    $("#messenger").css("height", "250px");
     $("#image").hide();
     if(allChoices[1] == "flash") {
         firstAdj = "flashy";
@@ -431,11 +431,19 @@ function finishPractice() {
     console.log(selectedPlayer.items.join(""));
     $("#messenger, #showFollowers").show();
     $("#courtTable, #timer, #secondMessage").hide();
+    $("#messenger").css("height", "180px");
     document.getElementById("message").innerHTML = "Nice work! Hit the showers and we’ll check in on your coach, " + selectedTeam.coach.firstName + " " + selectedTeam.coach.lastName
+    document.getElementById("opt1").setAttribute('onclick', 'coachTalk()');
+    document.getElementById("opt2").setAttribute('onclick', 'coachTalk()');
+    document.getElementById("opt1").innerHTML = "Go ahead";
+    document.getElementById("opt2").innerHTML = "I'm gone";
 }
 
 function shooting() {
-    $("#messenger, #spacing").hide()
+    $("#messenger, #spacing").hide();
 
 }
 
+function coachTalk() {
+
+}

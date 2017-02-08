@@ -58,9 +58,9 @@ div,input{box-sizing:border-box}:focus{outline-color:transparent;outline-style:n
 
 #messenger {
     width:80vw;
-    height:160px;
+    height:180px;
     background-color:#dbdbdb;
-    font-family: Arial;
+    font-family: "Helvetica Neue";
     border-width:0 10px;
     margin: auto;
 }
@@ -174,4 +174,15 @@ td {
     font-size: 25pt;
     font-family: 'Iceberg', cursive;
     color: 	#FD0100;
+}
+
+#messageIMG {
+    border-radius: 10%;
+    height: 20px;
+    width: 20px;
+    margin-top: 4px;
+}
+
+.smallSpace {
+    font-size: 2pt;
 }

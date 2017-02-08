@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WBB</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Iceberg|Open+Sans" rel="stylesheet">
+</head>
+<body>
+    <div id="spacing">
+        <p></p>
+    </div>
+    <div id="messenger" class="bordered">
+        <div id="messageHolder">New Message</div>
+        <div id="messages-container">
+            <div id="messages" class="bordered shadowed">
+                <div id="message">Select Player: Choose wisely!</div>
+                <div id="secondMessage"></div>
+            </div>
+        </div>
+        <input type="text" id="input" class="float" placeholder="Message"/>
+        <div id="send" class="bordered float">Send</div>
+        <div id="guesses">
+            <button class="guess bordered float" id="opt1" onclick="startGame()"></button>
+            <button class="guess bordered float" id="opt2" onclick="reloadPage()"></button>
+        </div>
+    </div>
+    <p></p>
+    <div id="CD" class="userSelect">
+        <p class="newLine"></p>
+        <img class="playerPics" src="img/40.jpg"/>
+        <div id="CDname">Crystal Dangerfield</div>
+        <div>UConn #5 FR Guard</div>
+        <div>FG% 42.3 FT% 66.7</div>
+        <div>2 Personal Fouls per Game</div>
+        <div id="CDPID" class="personalID">40</div>
+    </div>
+    <div id="KA" class="userSelect">
+        <p class="newLine"></p>
+        <img class="playerPics" src="img/50.jpg"/>
+        <div id="KAname">Kristine Anigwe</div>
+        <div>Cal #31 SO Center/Forward</div>
+        <div>FG% 65.7 FT% 75.4</div>
+        <div>4 Personal Fouls per Game</div>
+        <div id="KAPID" class="personalID">50</div>
+    </div><p></p>
+    <div id="KF" class="userSelect">
+        <p class="newLine"></p>
+        <img class="playerPics" src="img/60.jpg"/>
+        <div id="KFname">Katelynn Flaherty</div>
+        <div>Michigan #3 JR Guard</div>
+        <div>FG% 43.5 FT% 87.8</div>
+        <div>2 Personal Fouls per Game</div>
+        <div id="KFPID" class="personalID">60</div>
+    </div>
+    <div id="SW" class="userSelect">
+        <p class="newLine"></p>
+        <img class="playerPics" src="img/70.jpg"/>
+        <div id="SWname">Sydney Wiese</div>
+        <div>Oregon State #24 SR Guard</div>
+        <div>FG% 44.1 FT% 79.8</div>
+        <div>1 Personal Foul per Game</div>
+        <div id="SWPID" class="personalID">70</div>
+    </div>
+    <p></p>
+    <img id="image" src=""/>
+    <p>
+        <br/>
+    </p>
+    <div id="timer"></div>
+    <button id="practiceStart">Start</button>
+    <table background="img/CalCourt.png" id="courtTable" style="width:70%">
+        <tr>
+            <td><img id="BB1" class="basketball" src="img/Basketball%20orange.png"></td>
+            <td><img id="BB2" class="basketball" src="img/Basketball%20orange.png"></td>
+            <td><img id="BB3" class="basketball" src="img/Basketball%20orange.png"></td>
+            <td><img id="BB4" class="basketball" src="img/Basketball%20orange.png"></td>
+            <td><img id="BB5" class="basketball" src="img/Basketball%20orange.png"></td>
+        </tr>
+        <tr>
+            <td><img id="BB6" class="basketball" src="img/Basketball%20orange.png"></td>
+            <td><img id="BB7" class="basketball" src="img/Basketball%20orange.png"></td>
+            <td><img id="BB8" class="basketball" src="img/Basketball%20orange.png"></td>
+            <td><img id="BB9" class="basketball" src="img/Basketball%20orange.png"></td>
+            <td><img id="BB10" class="basketball" src="img/Basketball%20orange.png"></td>
+        </tr>
+        <tr>
+            <td><img id="BB11" class="basketball" src="img/Basketball%20orange.png"></td>
+            <td><img id="BB12" class="basketball" src="img/Basketball%20orange.png"></td>
+            <td><img id="BB13" class="basketball" src="img/Basketball%20orange.png"></td>
+            <td><img id="BB14" class="basketball" src="img/Basketball%20orange.png"></td>
+            <td><img id="BB15" class="basketball" src="img/Basketball%20orange.png"></td>
+        </tr>
+        <tr>
+            <td><img id="BB16" class="basketball" src="img/Basketball%20orange.png"></td>
+            <td><img id="BB17" class="basketball" src="img/Basketball%20orange.png"></td>
+            <td><img id="BB18" class="basketball" src="img/Basketball%20orange.png"></td>
+            <td><img id="BB19" class="basketball" src="img/Basketball%20orange.png"></td>
+            <td><img id="BB20" class="basketball" src="img/Basketball%20orange.png"></td>
+        </tr>
+        <tr>
+            <td><img id="BB21" class="basketball" src="img/Basketball%20orange.png"></td>
+            <td><img id="BB22" class="basketball" src="img/Basketball%20orange.png"></td>
+            <td><img id="BB23" class="basketball" src="img/Basketball%20orange.png"></td>
+            <td><img id="BB24" class="basketball" src="img/Basketball%20orange.png"></td>
+            <td><img id="BB25" class="basketball" src="img/Basketball%20orange.png"></td>
+        </tr>
+    </table>
+    <button id="showFollowers" onclick="showFollowers()">SHOW FOLLOWERS</button><div id="followerCount"></div>
+    <div id="secret"></div>
+</body>
+</html>

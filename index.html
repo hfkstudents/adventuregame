@@ -5,6 +5,8 @@
     <title>WBB</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="css/styles.css"/>
     <link href="https://fonts.googleapis.com/css?family=Iceberg|Open+Sans" rel="stylesheet">
 </head>
@@ -16,7 +18,7 @@
         <div id="messageHolder">
             <img id="messageIMG" src="img/Basketball%20orange.png"/>
             <p class="smallSpace"></p>
-            New Message: BB Messenger</div>
+            <div id="whoMessage">New Message: BB Messenger</div></div>
         <div id="messages-container">
             <div id="messages" class="bordered shadowed">
                 <div id="message">Select Player: Choose wisely!</div>
@@ -72,8 +74,9 @@
     <p>
         <br/>
     </p>
+    <div id="directions"></div>
     <div id="timer"></div>
-    <button id="practiceStart">Start</button>
+    <button id="practiceStart">Start</button><button id="practiceSkip" onclick="skipPractice()">Skip</button>
     <table background="img/CalCourt.png" id="courtTable" style="width:70%">
         <tr>
             <td><img id="BB1" class="basketball" src="img/Basketball%20orange.png"></td>

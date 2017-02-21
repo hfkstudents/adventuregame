@@ -3,7 +3,7 @@
  */
 
 $(document).ready(function() {
-    $(".personalID, #opt2, #opt1, #secondMessage, #spacing, #showFollowers, #secret, #timer, #practiceStart, #courtTable").hide();
+    $(".personalID, #opt2, #opt1, #secondMessage, #spacing, #showFollowers, #secret, #timer, #practiceStart, #courtTable, #practiceSkip, #directions").hide();
     $(".userSelect, #opt2, #opt1").mouseenter(function() {
         $(this).css({opacity: 1});
     }).mouseleave(function() {
@@ -14,14 +14,20 @@ $(document).ready(function() {
         document.getElementById("secret").innerHTML = document.getElementById($(this).attr('id') + "PID").innerHTML;
         document.getElementById("message").innerHTML = "Nice Choice! Step into " + document.getElementById($(this).attr('id') + "name").innerHTML + "'s shoes for the season!";
         $(".userSelect").hide();
-        $("#opt2, #opt1, #spacing").show();
+        $("#opt2, #opt1, #spacing, #secondMessage").show();
+        $("#messenger").css("height", "230px");
+        document.getElementById("secondMessage").innerHTML = "You can use 1 and 2 or f and j on your keyboard to select the first or second option";
         document.getElementById("opt1").innerHTML = "START";
         document.getElementById("opt2").innerHTML = "Go back";
     });
-    $(".basketball").click(function() {
-       selectedPlayer.items.push(this.id.toString());
-        $("#" + this.id).hide();
-    });
+}).keyup(function(event) {
+    if(document.getElementById("secret").innerHTML !== '') {
+        if (event.keyCode == 49 || event.keyCode == 70) {
+            $("#opt1").click();
+        } else if (event.keyCode == 50 || event.keyCode == 74) {
+            $("#opt2").click();
+        }
+    }
 });
 
 //OBJECT CONSTRUCTORS//
@@ -202,6 +208,10 @@ CD.account = new Account('crystald5', 7100, 'img/lskdfhals.jpg');
 KA.account = new Account('kristine_31', 8700, 'img/lskdfhals.jpg');
 KF.account = new Account('katelynnflaherty', 8900, 'img/lskdfhals.jpg');
 SW.account = new Account('swiesebaby24', 3500, 'img/lskdfhals.jpg');
+GA.account = new Account('THEnoAuriemma', 1000, 'img/GA.png');
+LG.account = new Account('CalCoachG', 1000, 'img/LG.png');
+KBA.account = new Account('KBA_GoBlue', 1000, 'img/KBA.png');
+SR.account = new Account('CoachRueck', 1000, 'img/SR.png');
 //DEFINING VARIABLES//
 
 
@@ -247,6 +257,8 @@ function showFollowers() {
 }
 
 function startGame() {
+    $("#secondMessage").hide();
+    $("#messenger").css("height", "180px");
     selectedPlayer = getObject(allPlayers, document.getElementById("secret").innerHTML);
     selectedTeam = selectedPlayer.team;
     document.getElementById("message").innerHTML = "Congrats! Your " + selectedTeam.school + " basketball team is ready to start the season."
@@ -305,7 +317,7 @@ function noFlash() {
 }
 
 function chooseFace() {
-    document.getElementById("message").innerHTML = "Smile or look fierce?";
+    document.getElementById("message").innerHTML = "Smile or Smize?";
     document.getElementById("opt1").innerHTML = "Smile :)";
     document.getElementById("opt2").innerHTML = "Glaring all the way!";
     document.getElementById("opt1").setAttribute('onclick','smile()');
@@ -399,15 +411,17 @@ function countDown() {
         document.getElementById("timer").innerHTML = count.toString();
     } else {
         document.getElementById("timer").innerHTML = "TIME'S UP!";
+        $("#practiceSkip").hide()
     }
 
 }
 
 function rebounds() {
     $("#messenger, #spacing, #showFollowers, .basketball").hide();
-    $("#timer, #practiceStart, #courtTable").show();
+    $("#timer, #practiceStart, #courtTable, #practiceSkip, #directions").show();
     document.getElementById("timer").innerHTML = count.toString();
     document.getElementById("practiceStart").setAttribute('onclick', 'startRebounding()');
+    document.getElementById("directions").innerHTML = "Click on as many B-balls as you can to pick them up"
 }
 
 function getFive() {
@@ -416,9 +430,21 @@ function getFive() {
     $(visibleBBs).show();
 }
 
+var whichShot = 0;
+var practiceShotCount = 0;
+
+function getShot() {
+    whichShot = getRandomInt(1,10);
+    document.getElementById('courtTable').setAttribute('background', 'img/' + selectedTeam.school + " Shots/" + selectedTeam.school + whichShot + ".png")
+}
+
 //work on timer
 function startRebounding() {
-    $("#practiceStart").hide();
+    $("#practiceStart, #directions").hide();
+    $(".basketball").click(function() {
+        selectedPlayer.items.push(this.id.toString());
+        $("#" + this.id).hide();
+    });
     setTimeout(finishPractice, 20000);
     var countInterval = setInterval(countDown, 1000);
     var fiveInterval = setInterval(getFive, 1250);
@@ -426,24 +452,136 @@ function startRebounding() {
     setTimeout(function() { var number = selectedPlayer.items.length; document.getElementById("timer").innerHTML = "You caught " + number + " of those suckers" }, 17000);
 }
 
+function skipPractice() {
+    $("#messenger, #showFollowers").show();
+    $("#courtTable, #timer, #secondMessage, #practiceStart, #practiceSkip").hide();
+    $("#messenger").css("height", "180px");
+    document.getElementById("message").innerHTML = "Hmm, laziness is one strategy. Let's check in on your coach, " + selectedTeam.coach.firstName + " " + selectedTeam.coach.lastName
+    document.getElementById("opt1").setAttribute('onclick', 'coachTalk()');
+    document.getElementById("opt2").setAttribute('onclick', 'coachTalk()');
+    document.getElementById("opt1").innerHTML = "Go ahead";
+    document.getElementById("opt2").innerHTML = "I'm gone";
+    selectedPlayer.FG += practiceShotCount/1.5;
+}
 
 function finishPractice() {
-    console.log(selectedPlayer.items.join(""));
+    // console.log(selectedPlayer.items.join(""));
     $("#messenger, #showFollowers").show();
-    $("#courtTable, #timer, #secondMessage").hide();
+    $("#courtTable, #timer, #secondMessage, #practiceSkip").hide();
     $("#messenger").css("height", "180px");
     document.getElementById("message").innerHTML = "Nice work! Hit the showers and we’ll check in on your coach, " + selectedTeam.coach.firstName + " " + selectedTeam.coach.lastName
     document.getElementById("opt1").setAttribute('onclick', 'coachTalk()');
     document.getElementById("opt2").setAttribute('onclick', 'coachTalk()');
     document.getElementById("opt1").innerHTML = "Go ahead";
     document.getElementById("opt2").innerHTML = "I'm gone";
+    selectedPlayer.FG += practiceShotCount/1.5;
 }
 
 function shooting() {
-    $("#messenger, #spacing").hide();
+    $("#messenger, #spacing, #showFollowers, .basketball").hide();
+    $("#timer, #practiceStart, #courtTable, #practiceSkip, #BB13, #directions").show();
+    $(function() {
+        $("#BB13").draggable({ containment: "#courtTable", scroll: false });
+    });
+    document.getElementById("courtTable").setAttribute('background', 'img/' + selectedTeam.school + 'Court.png');
+    document.getElementById("timer").innerHTML = count.toString();
+    document.getElementById("practiceStart").setAttribute('onclick', 'startShooting()');
+    document.getElementById("directions").innerHTML = "Accuracy is the key here. Drag your shots to the mark and make sure you can see the whole width of the court"
+}
 
+var shotTopLB = 0;
+var shotTopUB = 0;
+var shotLeftLB = 0;
+var shotLeftUB = 0;
+
+function defineShotLocation() {
+    if(whichShot == 1) {
+        shotTopLB = 13;
+        shotTopUB = 25;
+        shotLeftLB = 315;
+        shotLeftUB = 327;
+    } else if(whichShot == 2) {
+        shotTopLB = 111;
+        shotTopUB = 123;
+        shotLeftLB = 312;
+        shotLeftUB = 324;
+    } else if(whichShot == 3) {
+        shotTopLB = 256;
+        shotTopUB = 268;
+        shotLeftLB = 312;
+        shotLeftUB = 324;
+    } else if(whichShot == 4) {
+        shotTopLB = 351;
+        shotTopUB = 363;
+        shotLeftLB = 310;
+        shotLeftUB = 322;
+    } else if(whichShot == 5) {
+        shotTopLB = 110;
+        shotTopUB = 122;
+        shotLeftLB = 177;
+        shotLeftUB = 189;
+    } else if(whichShot == 6) {
+        shotTopLB = 108;
+        shotTopUB = 120;
+        shotLeftLB = 447;
+        shotLeftUB = 459;
+    } else if(whichShot == 7) {
+        shotTopLB = 34;
+        shotTopUB = 46;
+        shotLeftLB = 18;
+        shotLeftUB = 30;
+    } else if(whichShot == 8) {
+        shotTopLB = 36;
+        shotTopUB = 48;
+        shotLeftLB = 605;
+        shotLeftUB = 617;
+    } else if(whichShot == 9) {
+        shotTopLB = 234;
+        shotTopUB = 246;
+        shotLeftLB = 62;
+        shotLeftUB = 74;
+    } else if(whichShot == 10) {
+        shotTopLB = 224;
+        shotTopUB = 236;
+        shotLeftLB = 561;
+        shotLeftUB = 573;
+    }
+}
+
+function startShooting() {
+    $("#practiceStart, #directions").hide();
+    getShot();
+    defineShotLocation();
+    setTimeout(finishPractice, 20000);
+    var countInterval = setInterval(countDown, 1000);
+    setTimeout(function() { clearInterval(countInterval) }, 15000);
+    setTimeout(function() { var number = (practiceShotCount/1.5).toFixed(1); document.getElementById("timer").innerHTML = "Your FG% went up " + number + "%" }, 17000);
+    $("#courtTable").mouseup(function() {
+        if(count>1) {
+            var obj = $("#BB13");
+            var parent = $("#courtTable");
+            var childPos = obj.offset();
+            var parentPos = parent.offset();
+            var childOffset = {
+                top: childPos.top - parentPos.top,
+                left: childPos.left - parentPos.left
+            };
+            if ((childOffset.top < shotTopUB && childOffset.top > shotTopLB) && (childOffset.left < shotLeftUB && childOffset.left > shotLeftLB)) {
+                console.log("bottom");
+                practiceShotCount++;
+                getShot();
+                defineShotLocation();
+            }
+        }
+    })
 }
 
 function coachTalk() {
-
+    document.getElementById("messageIMG").setAttribute('src', selectedTeam.coach.account.picture);
+    document.getElementById("whoMessage").innerHTML = "Coach " + selectedTeam.coach.lastName;
+    document.getElementById("message").innerHTML = "";
+    // document.getElementById("opt1").setAttribute('onclick', 'coachTalk()');
+    // document.getElementById("opt2").setAttribute('onclick', 'coachTalk()');
+    document.getElementById("opt1").innerHTML = "Hey Coach!";
+    document.getElementById("opt2").innerHTML = "How's it going?";
 }

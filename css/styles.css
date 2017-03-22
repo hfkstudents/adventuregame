@@ -186,3 +186,39 @@ td {
 .smallSpace {
     font-size: 2pt;
 }
+
+.h3 {
+    background-color: #eee;
+    margin: auto;
+    color: #444;
+    cursor: pointer;
+    padding-bottom: 18px;
+    padding-top: 18px;
+    width: 441px;
+    text-align: center;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    font-family: Arial;
+}
+
+#selectAPicture {
+    text-align: center;
+    font-family: 'Arvo', serif;
+    font-size: 35pt;
+}
+
+.picInfo {
+    background-color: #eee;
+    color: #444;
+    position: relative;
+    width: 441px;
+    margin: auto;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+#imgCaption {
+    width: 425px;
+    margin: auto;
+}

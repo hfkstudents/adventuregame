@@ -7,8 +7,10 @@
     <script src="js/script.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="css/styles.css"/>
     <link href="https://fonts.googleapis.com/css?family=Iceberg|Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
 </head>
 <body>
     <div id="spacing">
@@ -69,11 +71,19 @@
         <div>1 Personal Foul per Game</div>
         <div id="SWPID" class="personalID">70</div>
     </div>
-    <p></p>
-    <img id="image" src=""/>
+    <div id="image"><p></p>
+    <img id="imageFile" src=""/>
+        <div id="caption">
+            <input id="writingCaption" placeholder="Add Caption"
+                   onkeydown = "if (event.keyCode == 13)
+                        document.getElementById('enterCaption').click()" /><button id="enterCaption" onclick="enterCaption()">Submit</button>
+        <div id="imgCaption"></div>
+            <button id="post" onclick="firstPostFollowerCheck()">Post</button>
+        </div>
     <p>
         <br/>
     </p>
+    </div>
     <div id="directions"></div>
     <div id="timer"></div>
     <button id="practiceStart">Start</button><button id="practiceSkip" onclick="skipPractice()">Skip</button>
@@ -114,7 +124,34 @@
             <td><img id="BB25" class="basketball" src="img/Basketball%20orange.png"></td>
         </tr>
     </table>
+    <div id="picsToPost">
+        <h3 id="selectAPicture" class="h3">Select a Picture</h3>
+        <div class="picInfo">Click on each heading to see your options. When you've made your choice, click on the selected image to move forward</div>
+        <h3 id="Ah3" class="h3">Action Shot</h3>
+        <div id="Adiv">
+            <div class="picInfo">Action shots are a classic way to get a steady following</div>
+            <img id="A" class="postImg" src=""/>
+        </div>
+        <h3 id="Fh3" class="h3">Funny Face</h3>
+        <div id="Fdiv">
+            <div class="picInfo">If you can build your reputation as a jokester, the comedy will out do your embarrassment!</div>
+            <img id="F" class="postImg" src=""/>
+        </div>
+        <h3 id="FTh3" class="h3">Free Throw Concentration</h3>
+        <div id="FTdiv">
+            <div class="picInfo">You can post this one with some kind of inspirational quote, which may or may not click with fans</div>
+            <img id="FT" class="postImg" src=""/>
+        </div>
+        <h3 id="footh3" class="h3">Random Pic</h3>
+        <div id="footdiv">
+            <div class="picInfo">Here's your choice if you're a risk taker! People will either find this amazing or drop you altogether</div>
+            <img id="foot" class="postImg" src="img/picsToPost/foot.jpg"/>
+        </div>
+        <div>
+            <p></p>
+        </div>
+    </div>
     <button id="showFollowers" onclick="showFollowers()">SHOW FOLLOWERS</button><div id="followerCount"></div>
-    <div id="secret"></div>
+<div id="secret"></div>
 </body>
 </html>
